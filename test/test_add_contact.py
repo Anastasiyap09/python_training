@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import pytest
-from fixture.contactfixture import Contactfixture
 from model.contact import Contact
+from fixture.application_manager import ApplicationManager
 
 
 
 @pytest.fixture
 def con(request):
-    fixture = Contactfixture()
+    fixture = ApplicationManager()
     request.addfinalizer(fixture.destroy)
     return fixture
 

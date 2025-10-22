@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import pytest
-from fixture.application import Application
 from model.group import Group
+from fixture.application_manager import ApplicationManager
 
 @pytest.fixture
 def app(request):
-    fixture = Application()
+    fixture = ApplicationManager()
     request.addfinalizer(fixture.destroy)
     return fixture
 

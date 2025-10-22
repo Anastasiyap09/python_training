@@ -1,5 +1,5 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+
 
 from fixture.group import GroupHelper
 from fixture.session import SessionHelper
@@ -11,10 +11,3 @@ class Application:
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
 
-    def open_home_page(self):
-        wd = self.wd
-        wd.get("http://localhost/addressbook/")
-
-
-    def destroy(self):
-        self.wd.quit()
