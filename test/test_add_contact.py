@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
-from contactfixture import Contactfixture
+from fixture.contactfixture import Contactfixture
 import unittest
-from contact import Contact
+from model.contact import Contact
 
 @pytest.fixture
 def con(request):
