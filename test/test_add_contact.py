@@ -4,6 +4,8 @@ from fixture.contactfixture import Contactfixture
 import unittest
 from model.contact import Contact
 
+
+
 @pytest.fixture
 def con(request):
     fixture = Contactfixture()
@@ -18,17 +20,6 @@ def test_test_add_contact(con):
     con.create_contact(Contact( firstname="grsgsg", middlename="sdfgsfg", lastname="hjkt", nickname="hgf", address="fjvf45dfknj34", mobile="89232342342"))
     con.return_to_home_page()
     con.logout()
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
