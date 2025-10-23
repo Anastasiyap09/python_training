@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 
 from fixture.group import GroupHelper
@@ -10,4 +11,8 @@ class Application:
         self.wd.implicitly_wait(60)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
+
+    def open_contact_page(self):
+        wd = self.wd
+        wd.find_element(By.LINK_TEXT, "add new").click()
 
