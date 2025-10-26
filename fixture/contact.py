@@ -27,11 +27,11 @@ class ContactHelper:
         wd.find_element(By.NAME, "address").clear()
         wd.find_element(By.NAME, "address").send_keys(contact.address)
         wd.find_element(By.NAME, "mobile").click()
-        wd.find_element(By.NAME, "home").click()
         wd.find_element(By.NAME, "mobile").click()
         wd.find_element(By.NAME, "mobile").clear()
         wd.find_element(By.NAME, "mobile").send_keys(contact.mobile)
         wd.find_element(By.XPATH, "//div[@id='content']/form/input[20]").click()
+        wd.find_element(By.NAME, "home").click()
 
     def delete_first_contact(self):
         wd = self.app.wd
@@ -39,6 +39,35 @@ class ContactHelper:
         # submit deletion
         wd.find_element(By.NAME, "delete").click()
         self.return_to_home_page()
+
+    def con_edit(self, contact):
+        wd = self.app.wd
+        wd.find_element(By.NAME, "selected[]").click()
+        # click edit
+        wd.find_element(By.XPATH, "//img[@alt='Edit']").click()
+        wd.find_element(By.NAME, "firstname").click()
+        wd.find_element(By.NAME, "firstname").clear()
+        wd.find_element(By.NAME, "firstname").send_keys(contact.firstname)
+        wd.find_element(By.NAME, "middlename").click()
+        wd.find_element(By.NAME, "middlename").clear()
+        wd.find_element(By.NAME, "middlename").send_keys(contact.middlename)
+        wd.find_element(By.NAME, "lastname").click()
+        wd.find_element(By.NAME, "lastname").clear()
+        wd.find_element(By.NAME, "lastname").send_keys(contact.lastname)
+        wd.find_element(By.NAME, "nickname").click()
+        wd.find_element(By.NAME, "nickname").clear()
+        wd.find_element(By.NAME, "nickname").send_keys(contact.nickname)
+        wd.find_element(By.NAME, "company").click()
+        wd.find_element(By.NAME, "company").clear()
+        wd.find_element(By.NAME, "company").send_keys(contact.company)
+        wd.find_element(By.NAME, "title").click()
+        wd.find_element(By.NAME, "title").clear()
+        wd.find_element(By.NAME, "title").send_keys(contact.title)
+        wd.find_element(By.NAME, "address").click()
+        wd.find_element(By.NAME, "address").clear()
+        wd.find_element(By.NAME, "address").send_keys(contact.address)
+        # click update
+        wd.find_element(By.XPATH, "//div[@id='content']/form/input[21]").click()
 
 
 
