@@ -64,6 +64,8 @@ class ContactHelper:
 
     def open_home(self):
         wd = self.app.wd
+        if wd.current_url.endswith("/index.php"):
+            return
         wd.find_element(By.LINK_TEXT, "home").click()
 
     def return_to_home_page(self):
