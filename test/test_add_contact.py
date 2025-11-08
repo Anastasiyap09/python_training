@@ -1,10 +1,24 @@
 # -*- coding: utf-8 -*-
 from model.contact import Contact
-
+from sys import maxsize
 
 def test_test_add_contact(app):
-    app.open_home_page()
-    app.contact.open_contact_page()
-    app.contact.con_create(Contact(firstname="grsgsg", middlename="sdfgsfg", lastname="hjkt", nickname="hgf", address="fjvf45dfknj34", mobile="89232342342"))
-    app.contact.return_to_home_page()
+    old_contacts = app.contact.get_contact_list()
+    #app.open_home_page()
+    #app.contact.open_contact_page()
+    contact = Contact(firstname="Joe", middlename="777", lastname="232", company="Company")
+    app.contact.con_create(contact)
+    new_contacts = app.contact.get_contact_list()
+    assert len(old_contacts) + 1 == len(new_contacts)
+    old_contacts.append(contact)
+    def id_or_max(cn):
+        if cn.id:
+            return int (cn.id)
+        else:
+            return maxsize
+    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    #app.contact.return_to_home_page()
+
+
+
 

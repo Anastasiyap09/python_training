@@ -1,5 +1,8 @@
 from selenium.webdriver.common.by import By
 
+from model.contact import Contact
+
+
 class ContactHelper:
 
     def __init__(self, app):
@@ -11,6 +14,7 @@ class ContactHelper:
 
     def con_create(self, contact):
         wd = self.app.wd
+        self.open_contact_page()
         self.fill_contact_form(contact)
         #click save
         wd.find_element(By.XPATH, "//div[@id='content']/form/input[20]").click()
@@ -64,7 +68,7 @@ class ContactHelper:
 
     def open_home(self):
         wd = self.app.wd
-        if wd.current_url.endswith("/index.php"):
+        if wd.current_url.endswith("./"):
             return
         wd.find_element(By.LINK_TEXT, "home").click()
 
@@ -76,3 +80,21 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element(By.LINK_TEXT, "add new").click()
         return len(wd.find_elements(By.NAME, "selected[]"))
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.open_home()
+        contacts = []
+        for element in wd.find_elements(By.CSS_SELECTOR, "tr.odd"):
+            text = element.text
+            id = element.find_element(By.NAME, "selected[]").get_attribute("value")
+            contacts.append(Contact(firstname=text, id=id))
+        return contacts
+
+
+
+
+
+
+
+
