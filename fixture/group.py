@@ -38,9 +38,16 @@ class GroupHelper:
         self.change_field("group_footer", group.footer )
 
     def delete_first_group(self):
+        self.delete_group_by_index(0)
+
+    def select_group_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements(By.NAME, "selected[]")[index].click()
+
+    def delete_group_by_index(self, index):
         wd = self.app.wd
         self.open_group_page()
-        self.select_first_group(wd)
+        self.select_group_by_index(index)
         # submit deletion
         wd.find_element(By.NAME, "delete").click()
         self.return_to_group_page()
@@ -50,9 +57,12 @@ class GroupHelper:
         wd.find_element(By.NAME, "selected[]").click()
 
     def modify_first_group(self, new_group_data):
+        self.modify_group_by_index(0)
+
+    def modify_group_by_index(self, index, new_group_data):
         wd = self.app.wd
         self.open_group_page()
-        self.select_first_group(wd)
+        self.select_group_by_index(index)
         # click edit
         wd.find_element(By.NAME, "edit").click()
         #edit group
