@@ -8,8 +8,8 @@ def test_test_add_contact(app):
     #app.contact.open_contact_page()
     contact = Contact(firstname="Joe", middlename="777", lastname="232", company="Company")
     app.contact.con_create(contact)
+    assert len(old_contacts) + 1 == app.contact.count()
     new_contacts = app.contact.get_contact_list()
-    assert len(old_contacts) + 1 == len(new_contacts)
     old_contacts.append(contact)
     def id_or_max(cn):
         if cn.id:

@@ -9,8 +9,8 @@ def test_test_add_group(app):
     old_groups = app.group.get_group_list()
     group = Group(name="test", header="test", footer="test")
     app.group.create(group)
+    assert len(old_groups) + 1 == app.group.count()
     new_groups = app.group.get_group_list()
-    assert len(old_groups) + 1 == len(new_groups)
     old_groups.append(group)
     def id_or_max(gr):
         if gr.id:
