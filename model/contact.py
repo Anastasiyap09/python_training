@@ -13,13 +13,15 @@ class Contact:
         self.id = id
 
     def __repr__(self):
-        return "%s (%s)" % (self.name, self.id)
+        return "%s (%s)" % (self.firstname , self.id)
 
     def __eq__(self, other):
-        return self.name == other.name and (self.id is None or other.id == other.id)
+        return self.firstname  == other.firstname  and (self.id is None or other.id == other.id)
 
     def id_or_max(cn):
         if cn.id:
             return int(cn.id)
         else:
             return maxsize
+
+

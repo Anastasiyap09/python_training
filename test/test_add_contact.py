@@ -10,6 +10,10 @@ def test_test_add_contact(app):
     app.contact.con_create(contact)
     assert len(old_contacts) + 1 == app.contact.count()
     new_contacts = app.contact.get_contact_list()
+    for c in new_contacts:
+        if c.firstname == contact.firstname and c.lastname == contact.lastname:
+            contact.id = c.id
+            break
     old_contacts.append(contact)
     def id_or_max(cn):
         if cn.id:
