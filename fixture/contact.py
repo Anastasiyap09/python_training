@@ -67,9 +67,10 @@ class ContactHelper:
     def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.open_home()
-        self.select_contact_by_index(index)
-        # click edit
-        wd.find_element(By.XPATH, "//img[@alt='Edit']").click()
+        #получаем все строки
+        rows = wd.find_elements(By.NAME, "entry")
+        # click edit по карандашу внутри
+        rows[index].find_element(By.XPATH, ".//img[@alt='Edit']").click()
         self.fill_contact_form(new_contact_data)
         # click update
         wd.find_element(By.XPATH, "//div[@id='content']/form/input[21]").click()

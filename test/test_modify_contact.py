@@ -7,7 +7,7 @@ def test_modify_nickname(app):
         app.contact.con_create(Contact(firstname="test66666"))
     old_contacts = app.contact.get_contact_list()
     index = randrange(len(old_contacts))
-    contact = Contact(firstname="jjj", lastname="iii")
+    contact = Contact(firstname="4567", lastname="прпрп")
     contact.id = old_contacts[index].id
     app.contact.modify_contact_by_index(index, contact)
     assert len(old_contacts) == app.contact.count()
