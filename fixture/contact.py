@@ -101,10 +101,9 @@ class ContactHelper:
             wd = self.app.wd
             self.open_home()
             self.contact_cache = []
-            #for element in wd.find_elements(By.CSS_SELECTOR, "tr"):
-            for element in wd.find_elements(By.NAME, "entry"):
-                columns = element.find_elements(By.TAG_NAME, "td")
-                id = element.find_element(By.NAME, "selected[]").get_attribute("value")
+            for row in wd.find_elements(By.NAME, "entry"):
+                columns = row.find_elements(By.TAG_NAME, "td")
+                id = columns[0].find_element(By.NAME, "selected[]").get_attribute("value")
                 lastname = columns[1].text
                 firstname = columns[2].text
                 self.contact_cache.append(Contact(firstname=firstname, lastname=lastname, id=id))
