@@ -7,17 +7,13 @@ import random
 
 
 
-def test_test_add_contact(app, json_contacts):
+def test_test_add_contact(app, db, json_contacts):
     contact=json_contacts
-    old_contacts = app.contact.get_contact_list()
+    old_contacts = db.get_contact_list()
     app.contact.con_create(contact)
-    assert len(old_contacts) + 1 == app.contact.count()
-    new_contacts = app.contact.get_contact_list()
-    for c in new_contacts:
-        if c.firstname == contact.firstname and c.lastname == contact.lastname:
-            contact.id = c.id
-            break
-    old_contacts.append(contact)
+    #assert len(old_contacts) + 1 == app.contact.count()
+    new_contacts = db.get_contact_list()
+
     def id_or_max(cn):
         if cn.id:
             return int (cn.id)

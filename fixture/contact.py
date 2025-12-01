@@ -45,6 +45,21 @@ class ContactHelper:
     def delete_first_contact(self):
        self.delete_contact_by_index(0)
 
+
+    def select_contact_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element(By.CSS_SELECTOR, "input[value='%s']" %id).click()
+
+    def delete_contact_by_id(self, id):
+        wd = self.app.wd
+        self.open_home()
+        self.select_contact_by_id(id)
+        # submit deletion
+        wd.find_element(By.NAME, "delete").click()
+        self.return_to_home_page()
+        self.contact_cache = None
+
+
     def select_contact_by_index(self, index):
         wd = self.app.wd
         wd.find_elements(By.NAME, "selected[]")[index].click()
@@ -62,6 +77,17 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element(By.NAME, "selected[]").click()
 
+    def modify_contact_by_id(self, id, new_contact_data):
+        wd = self.app.wd
+        self.open_home()
+        self.select_contact_by_id(id)
+        # click edit по карандашу внутри
+        wd.find_element(By.XPATH, ".//img[@alt='Edit']").click()
+        self.fill_contact_form(new_contact_data)
+        # click update
+        wd.find_element(By.XPATH, "//div[@id='content']/form/input[21]").click()
+        self.return_to_home_page()
+        self.contact_cache = None
 
     def modify_first_contact(self, new_contact_data):
         self.modify_contact_by_index(0)
